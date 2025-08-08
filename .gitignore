@@ -1,0 +1,101 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+
+# Package managers
+.uv/
+uv.lock
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Logs
+logs/
+*.log
+backend.log
+.pixeltalk.pids
+
+# Generated content
+generated_images/
+generated_videos/
+temp_audio.wav
+temp_audio_*.wav
+*.mp4
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.wav
+*.mp3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude/
+
+# Environment and credentials
+.env
+.env.*
+*.env
+gcp.json
+gcp*.json
+credentials.json
+service-account*.json
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+test_*.py
+*_test.py
+tests/
+
+# Documentation (temporary files)
+_cloned_repos/
+_docs/
+*.backup
+*.tmp
+
+# Streamlit
+.streamlit/
+app.py
+
+# Distribution
+dist/
+build/
+*.egg-info/
+
+# Deployment specific
+deploy*.sh
+cleanup*.sh
+fly.toml
+Dockerfile.dev
+
+# Screenshots and media
+Screenshot*.png
+Screen Recording*.mov
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Node (if any frontend added later)
+node_modules/
+package-lock.json
+yarn.lock

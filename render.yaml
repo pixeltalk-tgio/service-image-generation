@@ -1,0 +1,58 @@
+services:
+  - type: web
+    name: pixeltalk-service
+    runtime: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python main.py"
+    healthCheckPath: /health
+    
+    envVars:
+      # Server configuration
+      - key: ENVIRONMENT
+        value: production
+      - key: PORT
+        value: 8000
+      - key: PYTHON_VERSION
+        value: 3.10.18
+      
+      # Feature flags
+      - key: USE_CLOUDINARY
+        value: true
+      
+      # Cloudinary configuration
+      - key: CLOUDINARY_BASE_FOLDER
+        value: pixeltalk
+      - key: CLOUDINARY_UPLOAD_PRESET
+        value: none
+      - key: CLOUDINARY_MAX_WORKERS
+        value: 3
+      - key: CLOUDINARY_FALLBACK_LOCAL
+        value: true
+      
+      # Model configuration
+      - key: WHISPER_MODEL
+        value: whisper-1
+      - key: GPT_TEXT_MODEL
+        value: gpt-5
+      - key: GPT_IMAGE_MODEL
+        value: gpt-image-1
+      - key: GPT_VISION_MODEL
+        value: gpt-5-mini
+      
+      # Video generation
+      - key: VEO_MODEL_ID
+        value: veo-3.0-generate-preview
+      - key: VEO_LOCATION
+        value: us-central1
+      
+      # Database
+      - key: NEON_SCHEMA
+        value: public
+      
+    # These secrets need to be added in Render dashboard:
+    # - OPENAI_API_KEY
+    # - NEON_DATA_API_URL
+    # - NEON_API_KEY
+    # - GCP_PROJECT_ID
+    # - GOOGLE_APPLICATION_CREDENTIALS_BASE64 (base64 encoded gcp.json)
+    # - CLOUDINARY_URL
