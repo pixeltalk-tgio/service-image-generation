@@ -241,9 +241,8 @@ class CloudinaryService:
                 "prompt": str(metadata.get("prompt", ""))[:255],
                 "created_at": datetime.now().isoformat()
             },
-            # Video optimization
-            video_codec="auto",  # Automatic codec selection
-            audio_codec="auto",
+            # Video optimization - removed auto codec which causes errors
+            # Cloudinary will use default codecs for mp4
             # Generate multiple formats
             eager=[
                 {"width": 1280, "height": 720, "video_codec": "h264", "format": "mp4"},  # HD MP4
