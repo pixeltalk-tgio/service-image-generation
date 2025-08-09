@@ -47,7 +47,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `main.py` - FastAPI server with request tracking middleware
 - `app.py` - Streamlit UI with progressive polling
 - `services/audio_processor.py` - Async queue worker for pipeline
-- `services/db/neon.py` - Database operations (async PostgREST)
+- `database/neon.py` - Database operations (async PostgREST)
 - `configs/prompts.py` - AI prompt templates
 
 ## Code Patterns

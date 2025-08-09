@@ -25,8 +25,8 @@ if os.getenv('ENVIRONMENT') == 'production':
     startup.initialize_production()
 
 from services.audio_processor import processor
-from services.db import db
-from services.db.datadog import datadog_logger
+from database import db
+from database.datadog import datadog_logger
 
 # Configure structured logging
 request_id_var: ContextVar[str] = ContextVar('request_id', default='')

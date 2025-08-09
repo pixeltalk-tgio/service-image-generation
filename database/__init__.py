@@ -7,11 +7,11 @@ Currently supports:
 
 Usage:
     # Use Neon (default)
-    from services.db import db, notify_user, update_status
+    from database import db, notify_user, update_status
     
     # Use specific implementation
-    from services.db.neon import NeonDatabase
-    from services.db.firebase import FirebaseDB
+    from database.neon import NeonDatabase
+    from database.firebase import FirebaseDB
 """
 
 # Import Neon as the default database

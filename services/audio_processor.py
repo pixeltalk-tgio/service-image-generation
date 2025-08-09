@@ -13,10 +13,10 @@ from datetime import datetime
 import tempfile
 import base64
 
-from services.db import db
-from configs.client_init import initialize_openai_client
+from database import db
+from configs.client_openai import initialize_openai_client
 from services.video_prompt import VideoPromptGenerator
-from configs.veo_client import VeoClient
+from configs.client_veo import VeoClient
 from services.cloudinary_service import CloudinaryService
 
 # Configure structured logging
