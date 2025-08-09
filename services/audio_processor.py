@@ -532,18 +532,32 @@ class AudioProcessor:
             # Track title generation usage
             if session_id and hasattr(response, 'usage') and response.usage:
                 # Handle different response formats
-                if hasattr(response.usage, 'total_tokens'):
-                    await db.store_openai_usage(
-                        session_id=session_id,
-                        openai_id=response.id,
-                        request_type="title_generation",
-                        model_used=response.model,
-                        tokens={
-                            'completion_tokens': response.usage.completion_tokens,
-                            'prompt_tokens': response.usage.prompt_tokens,
-                            'total_tokens': response.usage.total_tokens
-                        }
-                    )
+                if hasattr(response, 'usage') and response.usage:
+                    # Handle different response formats
+                    usage_data = {}
+                    if hasattr(response.usage, 'completion_tokens'):
+                        usage_data['completion_tokens'] = response.usage.completion_tokens
+                    elif hasattr(response.usage, 'output_tokens'):
+                        usage_data['completion_tokens'] = response.usage.output_tokens
+                    
+                    if hasattr(response.usage, 'prompt_tokens'):
+                        usage_data['prompt_tokens'] = response.usage.prompt_tokens
+                    elif hasattr(response.usage, 'input_tokens'):
+                        usage_data['prompt_tokens'] = response.usage.input_tokens
+                    
+                    if hasattr(response.usage, 'total_tokens'):
+                        usage_data['total_tokens'] = response.usage.total_tokens
+                    elif 'completion_tokens' in usage_data and 'prompt_tokens' in usage_data:
+                        usage_data['total_tokens'] = usage_data['completion_tokens'] + usage_data['prompt_tokens']
+                    
+                    if usage_data:
+                        await db.store_openai_usage(
+                            session_id=session_id,
+                            openai_id=response.id,
+                            request_type="title_generation",
+                            model_used=response.model,
+                            tokens=usage_data
+                        )
                 # Skip usage tracking for new response format for now
             
             # Handle response based on model type
